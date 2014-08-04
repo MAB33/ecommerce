@@ -1,0 +1,13 @@
+<h1><%= "Welcome #{@user.username}!" %></h1>
+		<%= link_to "Edit Account Details", edit_user_path(@user) %>
+	<h3>Credit Cards on File:</h3>
+	<ul>
+		<% @user.cards.each do |card| %>
+			<li>
+				Card ending in: <%= card.card_number.to_s.split(//).last(4).join %> | 
+				<%= link_to "Edit", edit_user_card_path(@user, card) %>
+			</li>
+		<% end %>
+	</ul>
+	<p><%= link_to "Add New Card", new_user_card_path(@user) %></p>
+	<p><%= link_to "Orders", user_orders_path(@user) %></p>

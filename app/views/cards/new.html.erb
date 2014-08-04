@@ -1,0 +1,21 @@
+<h3>Add a credit card:</h3>
+<% if @card.errors.full_messages.any? %>
+	<ul>
+		<% @card.errors.full_messages.each do |error_message| %>
+		<li><%= error_message %></li> <br />
+		<% end %>
+	<ul>
+<% end %>
+<%= form_for(@card, url: user_cards_path(@user.id)) do |f| %>
+	<%= f.label 'Select a credit card type:' %>
+	<%= f.collection_select :card_type, Card::CARDTYPE, :to_s, :to_s, :include_blank => true %><br>
+	<%= f.label :card_number %>
+	<%= f.number_field :card_number %><br>
+	<p>Please enter the cardholder name as it appears on the card.</p>
+	<%= f.label 'First Name:' %>
+	<%= f.text_field :fname %><br>
+	<%= f.label 'Last Name' %>
+	<%= f.text_field :lname %><br>
+	<%= f.hidden_field(:user_id, value: @user.id) %>
+	<%= f.submit 'Add Card' %>
+<% end %>

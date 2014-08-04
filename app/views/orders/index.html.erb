@@ -1,0 +1,27 @@
+<% @user.orders.each do |order| %>
+	<% if order.id == session[:order_id] %>
+			<li>
+				<%= link_to "Current Order: #{order.id}", user_order_path(id: @user.id, order_id: order.id) %>
+				<ul>
+					<li>Products in order:</li>
+						<ol>
+						<% order.products.each do |product| %>
+								<li><%= product.name %></li>
+						<% end %>
+						</ol>
+				</ul>
+			</li>
+		<% else %>
+			<li>
+				Order Number: <%= order.id %>
+				<ul>
+					<li>Products in order:</li>
+						<ol>
+						<% order.products.each do |product| %>
+								<li><%= product.name %></li>
+						<% end %>
+						</ol>
+				</ul>
+			</li>
+		<% end %>
+	<% end %>

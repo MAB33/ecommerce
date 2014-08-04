@@ -1,0 +1,10 @@
+<div id="homeContainer">
+	<div id="loginForm">
+		<%= form_tag('sessions', method: 'post') do %>
+		<%= text_field_tag(:username, nil, placeholder: "username")%><br/>
+		<%= password_field_tag(:password, nil, placeholder: "password")%><br/>
+		<%= submit_tag "login"%>
+	<% end %>
+	<p style="font-size:.8em; color:black;">Not a member yet? <%= link_to "Join here.", new_user_path %></p>
+	</div>
+</div>

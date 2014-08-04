@@ -1,0 +1,15 @@
+<h3>This is order: <%= @order.id %></h3>
+
+<ol>
+	<% @order.orders_products.each do |op| %>
+			<li>
+			Product: <%= op.product.name %><br>
+			Price: <%= print_price(op.product.price) %><br>
+			Quantity: <%= op.quantity %><br>
+			Subtotal: <%= print_price(op.subtotal) %><br>
+			</li>
+	<% end %>
+</ol>
+
+<p><%= print_price(@order.grand_total) %> </p>
+<p><%= link_to "Submit Order", orderComplete_path, method: "post"%></p>

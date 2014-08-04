@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Ecommerce</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+	<nav>
+		<% if current_user %>
+			<p>Hi <%= link_to "#{current_user.username}!", user_path(current_user) %> |
+			<%= link_to "Logout", logout_path, method: "delete" %> | 
+		<% else %>
+			<%= link_to "Sign In", login_path %> | <%# link_to "Sign Up", new_user_path %>
+		<% end %>
+		<%= link_to "Products", products_path %> 
+		<% if current_order %>
+			| <%= link_to "Cart", user_order_path(id: current_user.id, user_id: current_user.id, order_id: current_order.id) %></p>
+		<% else %>
+		<% end %>
+		</nav>
+
+	<% if flash[:notice]%>
+		<div class="flashAlert"><%= flash[:notice] %></div>
+	<% elsif flash[:alert]%>
+		<div class="flashAlert"><%= flash[:alert] %></div>
+	<% end %>
+	
+<%= yield %>
+
+</body>
+</html>

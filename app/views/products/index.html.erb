@@ -1,0 +1,9 @@
+<h1>All Products</h1>
+<ul>
+	<% @products.each do |product| %>
+			<li><%= product.name %>
+			<br><%= print_price(product.price) %>
+			<br><%= link_to "Details", product_path(product) %>
+			</li><br>
+		<% end %>
+</ul>

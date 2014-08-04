@@ -1,0 +1,30 @@
+<% if @user.id == current_user.id %>
+	<h1>Edit Account Details:</h1>
+	<h3>Username: <%= @user.username %></h3>
+	<% if @user.errors.full_messages.any? %>
+		<ul>
+			<% @user.errors.full_messages.each do |error_message| %>
+			<li><%= error_message %></li> <br />
+			<% end %>
+		<ul>
+	<% end %>
+	<%= form_for(@user) do |f| %>
+		<%# f.label :username %>
+		<%# f.text_field :username %><br>
+		<%= f.label :password %>
+		<%= f.password_field :password %><br>
+		<%= f.label :password_confirmation %>
+		<%= f.password_field :password_confirmation %><br>
+		<%= f.submit :update %>
+	<% end %>
+	<p> <%= link_to("Delete User", user_path(@user), method: :delete)%> </p>
+<% else %>
+	<p>You are not authorized to view this page! Return to your profile <%= link_to 'here', user_path(current_user) %></p>
+<% end %>
+
+
+
+
+
+
+
