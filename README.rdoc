@@ -1,8 +1,1 @@
-== README
-
-- /users/:user_id/orders(.:format)
-	- should show order history of completed or pending (pending can be deleted)
-
-- view cart/checkout link
-
-- add purched boolen column to order table
+README
