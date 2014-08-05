@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140711200841) do
+ActiveRecord::Schema.define(version: 20140805152656) do
 
   create_table "cards", force: true do |t|
     t.integer  "card_number"

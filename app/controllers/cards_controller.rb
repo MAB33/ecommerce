@@ -7,18 +7,30 @@ class CardsController < ApplicationController
 	end
 
 	def new
-		@user = User.find(session[:user_id])
-		@card = Card.new
+		# @user = User.find(session[:user_id])
+		# @card = Card.new
+
+		# NEW STUFF BELOW
+			# puts params.inspect
+			# puts "*******#{params[:user_id]}*******"
+			# puts "*********#{current_user.id}"
+		if current_user
+			@user = User.find(session[:user_id])
+			@card = Card.new
+			render :new
+		else
+			redirect_to '/'
+		end
 	end
 
 	def edit
 		@user = User.find(session[:user_id])
-		puts params.inspect
 	end
 
 	def create
 		@user = User.find(session[:user_id])
 		@card = Card.create(card_params)
+
 	    if @card.errors.empty?
 	      flash[:notice] = "Your card has been added!"
 	      redirect_to @card.user
@@ -61,6 +73,10 @@ class CardsController < ApplicationController
       redirect_to @user
     end
   end
+
+  	def current_user
+		session[:user_id].nil? ? nil :User.find(session[:user_id])
+	end
 
   private
 	def card_params
