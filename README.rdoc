@@ -1,1 +1,1 @@
-Basic ecommerce site used to practice testing with Rspec
+Basic e-commerce site used to practice testing with Rspec
